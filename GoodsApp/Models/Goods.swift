@@ -10,7 +10,6 @@ struct Goods: Decodable {
     let price: Int?
     let description: String?
     let category: Category?
-//    let images: [String]?
 }
 
 struct Category: Decodable {

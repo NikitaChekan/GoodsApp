@@ -62,6 +62,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Сategory: Name" id="dYi-Gg-tJO"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="HBD-xC-XWc" id="hxg-1T-V04"/>
+                        <outlet property="goodsImage" destination="1Q8-ok-36n" id="JVp-GW-wBi"/>
+                        <outlet property="priceLabel" destination="Lyf-e6-GDa" id="PTX-TK-JlE"/>
+                        <outlet property="titleLabel" destination="8G6-5n-i3s" id="54a-HL-wmf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
