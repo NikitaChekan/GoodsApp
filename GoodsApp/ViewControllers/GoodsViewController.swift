@@ -16,26 +16,17 @@ class GoodsViewController: UIViewController {
 
 }
 
+// MARK: - Networking
 extension GoodsViewController {
     private func fetchGoods() {
-        guard let url = URL(string: Link.baseURL.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            
-            do {
-                let person = try decoder.decode(Goods.self, from: data)
-                print(person)
-            } catch let error {
+        NetworkManager.shared.fetch(Goods.self, from: Link.baseURL.rawValue) { result in
+            switch result {
+            case .success(let course):
+                print(course)
+            case .failure(let error):
                 print(error.localizedDescription)
             }
-            
-        }.resume()
+        }
     }
 }
 
