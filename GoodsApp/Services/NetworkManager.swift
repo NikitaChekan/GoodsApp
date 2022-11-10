@@ -14,7 +14,7 @@ enum NetworkError: Error { // перечисления с набором оши�
 }
 
 enum Link: String {
-    case baseURL = "https://api.escuelajs.co/api/v1/products/40"
+    case baseURL = "https://api.escuelajs.co/api/v1/products/"
 }
 
 class NetworkManager {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GoodsViewController: UIViewController {
+class DetailsViewController: UIViewController {
 
     
     @IBOutlet var goodsImage: UIImageView!
@@ -15,18 +15,22 @@ class GoodsViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     
+    var goods: Goods!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchGoods()
+        configure()
     }
     
-    private func configure(with goods: Goods) {
-        navigationItem.title = goods.category?.name
+    // MARK: - Private Methods
+    private func configure() {
+        navigationItem.title = "\(goods.category.name)"
         titleLabel.text = goods.title
         descriptionLabel.text = goods.description
-        priceLabel.text = "$\(goods.price ?? 0)"
-        
-        NetworkManager.shared.fetchImage(from: goods.category?.image) { [weak self] result in
+        priceLabel.text = "$\(goods.price)"
+
+        NetworkManager.shared.fetchImage(from: goods.category.image) { [weak self] result in
             switch result {
             case .success(let imageData):
                 self?.goodsImage.image = UIImage(data: imageData)
@@ -38,7 +42,7 @@ class GoodsViewController: UIViewController {
 }
 
 // MARK: - Networking
-extension GoodsViewController {
+extension DetailsViewController {
     private func fetchGoods() {
         NetworkManager.shared.fetch(Goods.self, from: Link.baseURL.rawValue) { result in
             switch result {

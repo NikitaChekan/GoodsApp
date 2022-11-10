@@ -6,14 +6,14 @@
 //
 
 struct Goods: Decodable {
-    let title: String?
-    let price: Int?
-    let description: String?
-    let category: Category?
+    let title: String
+    let price: Int
+    let description: String
+    let category: Category
 }
 
 struct Category: Decodable {
-    let name: String?
-    let image: String?
+    let name: String
+    let image: String
 }
 
