@@ -18,16 +18,18 @@ struct Goods: Decodable {
         self.category = category
     }
     
-    init(courseData: [String: Any]) {
-        title = courseData["title"] as? String ?? ""
-        price = courseData["price"] as? Int ?? 0
-        description = courseData["description"] as? String ?? ""
-        category = courseData["category"] as? Category ?? ""
+    init(goodsData: [String: Any]) {
+        title = goodsData["title"] as? String ?? ""
+        price = goodsData["price"] as? Int ?? 0
+        description = goodsData["description"] as? String ?? ""
+        
+        let categoryData = goodsData["category"] as? [String: Any] ?? [:]
+        category = Category(categoryData: categoryData)
     }
     
     static func getGoods(from value: Any) -> [Goods] {
-        guard let coursesData = value as? [[String: Any]] else { return [] }
-        return coursesData.map { Goods(courseData: $0) }
+        guard let goodsData = value as? [[String: Any]] else { return [] }
+        return goodsData.map { Goods(goodsData: $0) }
     }
 }
 
@@ -35,8 +37,8 @@ struct Category: Decodable {
     let name: String
     let image: String
     
-    init(name: String, image: String) {
-        self.name = name
-        self.image = image
+    init(categoryData: [String: Any]) {
+        name = categoryData["name"] as? String ?? ""
+        image = categoryData["image"] as? String ?? ""
     }
 }
