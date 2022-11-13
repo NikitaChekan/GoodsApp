@@ -45,7 +45,7 @@ class GoodsTableViewController: UITableViewController {
 // MARK: - Networking
 extension GoodsTableViewController {
     private func fetchGoods() {
-        NetworkManager.shared.fetch([Goods].self, from: Link.baseURL.rawValue) { [weak self] result in
+        NetworkManager.shared.fetchGoods(from: Link.baseURL.rawValue) { [weak self] result in
             switch result {
             case .success(let goods):
                 self?.goodsList = goods

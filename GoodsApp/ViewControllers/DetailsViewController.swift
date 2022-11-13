@@ -30,7 +30,7 @@ class DetailsViewController: UIViewController {
         descriptionLabel.text = goods.description
         priceLabel.text = "$\(goods.price)"
 
-        NetworkManager.shared.fetchImage(from: goods.category.image) { [weak self] result in
+        NetworkManager.shared.fetchData(from: goods.category.image) { [weak self] result in
             switch result {
             case .success(let imageData):
                 self?.goodsImage.image = UIImage(data: imageData)
@@ -44,7 +44,7 @@ class DetailsViewController: UIViewController {
 // MARK: - Networking
 extension DetailsViewController {
     private func fetchGoods() {
-        NetworkManager.shared.fetch(Goods.self, from: Link.baseURL.rawValue) { result in
+        NetworkManager.shared.fetchGoods(from: Link.baseURL.rawValue) { result in
             switch result {
             case .success(let info):
                 print(info)
